@@ -2,7 +2,7 @@
     "name": "theme-timer",
     "displayName": "theme-timer",
     "description": "An extension which switches Color themes based on a Cron-style schedule",
-    "version": "1.0.1",
+    "version": "2.0.0",
     "publisher": "rmcclain",
     "engines": {
         "vscode": "^1.23.0"
@@ -41,7 +41,7 @@
                         {
                             "theme": "Visual Studio Light",
                             "time": "* * 6 * * *"
-                        } 
+                        }
                     ],
                     "description": "An array of themes with \"theme\" and \"time\" keys"
                 }
