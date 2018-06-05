@@ -2,7 +2,7 @@
     "name": "theme-timer",
     "displayName": "theme-timer",
     "description": "An extension which switches Color themes based on a Cron-style schedule",
-    "version": "0.0.1",
+    "version": "1.0.1",
     "publisher": "rmcclain",
     "engines": {
         "vscode": "^1.23.0"
@@ -14,6 +14,7 @@
         "*"
     ],
     "main": "./out/src/extension",
+    "repository": "https://github.com/ReiMcCl/theme-timer.git",
     "contributes": {
         "commands": [
             {
