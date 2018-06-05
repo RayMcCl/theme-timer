@@ -2,8 +2,13 @@
     "name": "theme-timer",
     "displayName": "theme-timer",
     "description": "An extension which switches Color themes based on a Cron-style schedule",
-    "version": "2.0.0",
-    "publisher": "rmcclain",
+    "version": "1.0.0",
+    "publisher": "raymcclain",
+    "icon": "icon.png",
+    "galleryBanner": {
+        "color": "#fafafa",
+        "theme": "light"
+    },
     "engines": {
         "vscode": "^1.23.0"
     },
@@ -16,12 +21,6 @@
     "main": "./out/src/extension",
     "repository": "https://github.com/ReiMcCl/theme-timer.git",
     "contributes": {
-        "commands": [
-            {
-                "command": "extension.sayHello",
-                "title": "Hello World"
-            }
-        ],
         "configuration": {
             "type": "object",
             "title": "",
