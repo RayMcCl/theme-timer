@@ -16,6 +16,8 @@ function updateSettings () {
     const config = vscode.workspace.getConfiguration('theme-timer');
     themeList = config.themes;
     state = config.enable;
+
+    console.log('Config', config);
     
     if(state){
         scheduleTasks();
@@ -27,6 +29,8 @@ function updateSettings () {
 function updateTheme () {
     CONFIG.update(THEME, this.theme, true);
     CONFIG = vscode.workspace.getConfiguration();
+
+    console.log('Update theme', this.theme);
 }
 
 function scheduleTasks () {
