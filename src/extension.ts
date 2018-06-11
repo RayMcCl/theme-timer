@@ -23,6 +23,7 @@ function updateSettings () {
 }
 
 function updateTheme (theme) {
+    console.log('Updating theme', theme.theme);
     CONFIG.update(THEME, theme.theme, true);
     CONFIG = vscode.workspace.getConfiguration();
 }
@@ -35,9 +36,15 @@ function checkTime (){
         var startTime = moment(themeList[i].startTime, format);
         var endTime = moment(themeList[i].endTime, format);
 
+        if(startTime.isAfter(endTime)){
+            endTime.add(1, 'day');
+        }
+
+        console.log(startTime, endTime, curTime);
+
         if(curTime.isBetween(startTime, endTime)){
             updateTheme(themeList[i]);
-            scheduleNextCheck(themeList[i].endTime);
+            scheduleNextCheck(endTime);
             return;
         }
     }
@@ -46,13 +53,12 @@ function checkTime (){
 }
 
 function scheduleNextCheck (time) {
-    var format = 'hh:mm:ss';
-
-    var mTime = moment(time, format);
     var curTime = moment();
-    mTime.add(1, 's');
+    time.add(1, 's');
 
-    setTimeout(checkTime, mTime.diff(curTime));
+    console.log('Checking theme in', time.diff(curTime));
+
+    setTimeout(checkTime, time.diff(curTime));
 }
 
 vscode.workspace.onDidChangeConfiguration(updateSettings, this);

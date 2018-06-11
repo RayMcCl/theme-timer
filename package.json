@@ -2,7 +2,7 @@
     "name": "theme-timer",
     "displayName": "theme-timer",
     "description": "An extension which switches Color themes based on a schedule",
-    "version": "1.0.2",
+    "version": "1.0.0",
     "publisher": "raymcclain",
     "icon": "icon.png",
     "galleryBanner": {
@@ -44,7 +44,7 @@
                             "endTime": "7:00:00"
                         }
                     ],
-                    "description": "An array of themes with \"theme\" and \"time\" keys"
+                    "description": "An array of themes with \"theme\",\"startTime\", and \"endTime\" keys"
                 }
             }
         }
