@@ -1,6 +1,6 @@
 'use strict';
 import * as vscode from 'vscode';
-import * as schedule from 'node-schedule';
+import * as moment from 'moment';
 
 let CONFIG = vscode.workspace.getConfiguration();
 const THEME = "workbench.colorTheme";
@@ -18,31 +18,41 @@ function updateSettings () {
     state = config.enable;
     
     if(state){
-        scheduleTasks();
-    } else {
-        cancelTasks();
+        checkTime();
     }
 }
 
-function updateTheme () {
-    CONFIG.update(THEME, this.theme, true);
+function updateTheme (theme) {
+    CONFIG.update(THEME, theme.theme, true);
     CONFIG = vscode.workspace.getConfiguration();
 }
 
-function scheduleTasks () {
-    cancelTasks();
+function checkTime (){
+    var format = 'hh:mm:ss';
+    var curTime = moment();
 
     for(var i = 0; i < themeList.length; i++){
-        tasks.push(schedule.scheduleJob(themeList[i].time, updateTheme.bind(themeList[i])));
+        var startTime = moment(themeList[i].startTime, format);
+        var endTime = moment(themeList[i].endTime, format);
+
+        if(curTime.isBetween(startTime, endTime)){
+            updateTheme(themeList[i]);
+            scheduleNextCheck(themeList[i].endTime);
+            return;
+        }
     }
+
+    setTimeout(checkTime, 300000);
 }
 
-function cancelTasks () {
-    for(var i = 0; i < tasks.length; i++){
-        tasks[i].cancel();
-    }   
+function scheduleNextCheck (time) {
+    var format = 'hh:mm:ss';
 
-    tasks = [];
+    var mTime = moment(time, format);
+    var curTime = moment();
+    mTime.add(1, 's');
+
+    setTimeout(checkTime, mTime.diff(curTime));
 }
 
 vscode.workspace.onDidChangeConfiguration(updateSettings, this);

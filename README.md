@@ -1,6 +1,6 @@
 # Theme Timer
 
-A Cron-style scheduler for automatically changing VSCode themes, useful for automatically switching Day/Night themes.
+A scheduler for automatically changing VSCode themes, useful for automatically switching Day/Night themes.
 
 ## Extension Settings
 
@@ -16,35 +16,32 @@ Themes can be scheduled by adding them to the `theme-timer.themes` configuration
 "theme-timer.themes": [
     {
         "theme": "Cobalt2",
-        "time": "* * 4 * * *"
+        "startTime": "16:00:00",
+        "endTime": "20:00:00"
     }
 ]
 ```
 
-The above will change the active theme to Cobalt2 everyday at 4PM (local time).
+The above will change the active theme to Cobalt2 everyday at 4PM (local time) and will switch to another theme at 8PM (local time).
 
-The time follows a Cron structure for timing and is broken down as below:
+The time follows a HH:MM:SS format and times should be set back-to-back, as follows:
 
 ```
-*    *    *    *    *    *
-┬    ┬    ┬    ┬    ┬    ┬
-│    │    │    │    │    │
-│    │    │    │    │    └ day of week (0 - 7) (0 or 7 is Sun)
-│    │    │    │    └───── month (1 - 12)
-│    │    │    └────────── day of month (1 - 31)
-│    │    └─────────────── hour (0 - 23)
-│    └──────────────────── minute (0 - 59)
-└───────────────────────── second (0 - 59, OPTIONAL)
+"theme-timer.themes": [
+    {
+        "theme": "Visual Studio Light",
+        "startTime": "7:00:00",
+        "endTime": "16:00:00"
+    },
+    {
+        "theme": "Visual Studio Dark",
+        "startTime": "16:00:00",
+        "endTime": "7:00:00"
+    }
+]
 ```
-
-Please see the below package for more details:
-
-https://github.com/node-schedule/node-schedule
-
 
 ## Release Notes
-
-Users appreciate release notes as you update your extension.
 
 ### 1.0.0
 
