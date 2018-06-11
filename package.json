@@ -1,8 +1,8 @@
 {
     "name": "theme-timer",
     "displayName": "theme-timer",
-    "description": "An extension which switches Color themes based on a Cron-style schedule",
-    "version": "1.0.0",
+    "description": "An extension which switches Color themes based on a schedule",
+    "version": "1.0.1",
     "publisher": "raymcclain",
     "icon": "icon.png",
     "galleryBanner": {
